@@ -53,7 +53,7 @@ import com.squareup.picasso.Picasso;
     To hide preview image
     previewImg.setVisibility(View.GONE)
  */
-public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGeneratorScreen {
+public class MemeGeneratorScreen extends AppCompatActivity {
 
     private EditText templateNameTxt;
     private Spinner templateNameDropDown;
@@ -65,7 +65,9 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showScreen();
+        setContentView(R.layout.activity_meme_generator_screen); // shows the UI on screen
+        initComponents(); // This will create objects for all the ui components
+        setupListeners(); // Setting listener for button click action
     }
 
     // Do not touch this method
@@ -81,7 +83,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     // DO not touch this method
     private void setupListeners() {
         generateMemeBtn.setOnClickListener(v -> {
-            onGenerateMemeClicked();
+            // TODO : This block of code will get executed when you click on generate button
         });
     }
 
@@ -103,7 +105,6 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     }
 
     // Do not touch this method
-    // Use this method to open preview screen
     private void openMemePreviewScreen(String memeImageUrl) {
         Intent intent = new Intent(this, MemePreviewScreen.class);
         intent.putExtra("MEME_IMAGE_URL", memeImageUrl);
@@ -113,39 +114,5 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     // This will create the meme image url using ApiMeme.com
     private String createMemeImageUrl(String template, String topText, String bottomText) {
         return "https://apimeme.com/meme?meme=" + template + "&top=" + topText + "&bottom=" + bottomText;
-    }
-
-    @Override
-    public void showScreen() {
-        setContentView(R.layout.activity_meme_generator_screen); // shows the UI on screen
-        initComponents(); // This will create objects for all the ui components
-        setupListeners(); // Setting listener for button click action
-        showTitle("Meme Generator");
-    }
-
-    @Override
-    public void showTitle(String title) {
-        getSupportActionBar().setTitle(title);
-    }
-
-    @Override
-    public String getTemplateName() {
-        return templateNameDropDown.getSelectedItem().toString();
-    }
-
-    @Override
-    public String getTopText() {
-        return topTextTxt.getText().toString();
-    }
-
-    @Override
-    public String getBottomText() {
-        return bottomTextTxt.getText().toString();
-    }
-
-    @Override
-    public void onGenerateMemeClicked() {
-        String memeImageUrl = createMemeImageUrl(getTemplateName(), getTopText(), getBottomText());
-        Picasso.get().load(memeImageUrl).into(previewImg);
     }
 }
