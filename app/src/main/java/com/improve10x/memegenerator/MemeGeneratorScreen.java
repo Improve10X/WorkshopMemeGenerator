@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
     Picasso.get().load(<URL>).into(previewImg);
 
     To hide template name textbox
-    templateNameTxt.setVisibility(View.GONE)
+    templateNameTxt.setVisibility(View.INVISIBLE)
 
     To show template name dropdown
     templateDropDown.setVisibility(View.VISIBLE)
@@ -51,7 +51,7 @@ import com.squareup.picasso.Picasso;
     openMemePreviewScreen(memeImageUrl)
 
     To hide preview image
-    previewImg.setVisibility(View.GONE)
+    previewImg.setVisibility(View.INVISIBLE)
  */
 public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGeneratorScreen {
 
@@ -133,7 +133,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     @Override
     public void hideTemplateNameTxt() {
-        templateNameTxt.setVisibility(View.GONE);
+        templateNameTxt.setVisibility(View.INVISIBLE);
     }
 
     @Override
