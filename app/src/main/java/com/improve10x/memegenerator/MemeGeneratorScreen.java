@@ -25,7 +25,7 @@ bottomTextTxt.getText().toString()
 To load a image using url
 Picasso.get().load(<URL>).into(previewImg);
  */
-public class MemeGeneratorScreen extends AppCompatActivity {
+public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGeneratorScreen {
 
     private EditText templateNameTxt;
     private EditText topTextTxt;
@@ -53,12 +53,38 @@ public class MemeGeneratorScreen extends AppCompatActivity {
     // DO not touch this method
     private void setupListeners() {
         generateMemeBtn.setOnClickListener(v -> {
-            // TODO : This will execute when user clicks on generate meme button
+            onGenerateMemeClicked();
         });
     }
 
     // This will create the meme image url using ApiMeme.com
     private String createMemeImageUrl(String template, String topText, String bottomText) {
         return "https://apimeme.com/meme?meme="+template+"&top="+topText+"&bottom=" + bottomText;
+    }
+
+    @Override
+    public void showTitle(String title) {
+        getSupportActionBar().setTitle("Meme Generator");
+    }
+
+    @Override
+    public String getTemplateName() {
+        return templateNameTxt.getText().toString();
+    }
+
+    @Override
+    public String getTopText() {
+        return topTextTxt.getText().toString();
+    }
+
+    @Override
+    public String getBottomText() {
+        return bottomTextTxt.getText().toString();
+    }
+
+    @Override
+    public void onGenerateMemeClicked() {
+        String memeImageUrl = createMemeImageUrl(getTemplateName(), getTopText(), getBottomText());
+        Picasso.get().load(memeImageUrl).into(previewImg);
     }
 }
