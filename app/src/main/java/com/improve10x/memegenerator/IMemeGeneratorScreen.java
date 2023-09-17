@@ -5,9 +5,7 @@ public interface IMemeGeneratorScreen {
 
     void showTitle(String title);
 
-    void showTemplateNamesDropDown();
-
-    String getSelectedTemplateName();
+    String getTemplateName();
 
     String getTopText();
 
