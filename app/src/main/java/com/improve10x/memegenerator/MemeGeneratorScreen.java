@@ -32,6 +32,12 @@ import com.squareup.picasso.Picasso;
     To load a image using url
     Picasso.get().load(<URL>).into(previewImg);
 
+    To hide template name textbox
+    templateNameTxt.setVisibility(View.INVISIBLE)
+
+    To show template name dropdown
+    templateDropDown.setVisibility(View.VISIBLE)
+
     To get selected template name from dropdown, use
     templateDropDown.getSelectedItem().toString();
 
@@ -45,10 +51,11 @@ import com.squareup.picasso.Picasso;
     openMemePreviewScreen(memeImageUrl)
 
     To hide preview image
-    previewImg.setVisibility(View.GONE)
+    previewImg.setVisibility(View.INVISIBLE)
  */
 public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGeneratorScreen {
 
+    private EditText templateNameTxt;
     private Spinner templateNameDropDown;
     private EditText topTextTxt;
     private EditText bottomTextTxt;
@@ -63,6 +70,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     // Do not touch this method
     private void initComponents() {
+        templateNameTxt = findViewById(R.id.templateNameTxt);
         templateNameDropDown = findViewById(R.id.templateNameDropDown);
         topTextTxt = findViewById(R.id.topTextTxt);
         bottomTextTxt = findViewById(R.id.bottomTextTxt);
@@ -109,11 +117,10 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     @Override
     public void showScreen() {
-        setContentView(R.layout.activity_main); // shows the UI on screen
+        setContentView(R.layout.activity_meme_generator_screen); // shows the UI on screen
         initComponents(); // This will create objects for all the ui components
         setupListeners(); // Setting listener for button click action
         showTitle("Meme Generator");
-        showTemplateNamesDropDown();
     }
 
     @Override
@@ -122,12 +129,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     }
 
     @Override
-    public void showTemplateNamesDropDown() {
-        showDataInDropdown(createTemplateNames());
-    }
-
-    @Override
-    public String getSelectedTemplateName() {
+    public String getTemplateName() {
         return templateNameDropDown.getSelectedItem().toString();
     }
 
@@ -143,6 +145,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     @Override
     public void onGenerateMemeClicked() {
-        // TODO : open MemePreviewScreen with meme ImageUrl
+        String memeImageUrl = createMemeImageUrl(getTemplateName(), getTopText(), getBottomText());
+        Picasso.get().load(memeImageUrl).into(previewImg);
     }
 }
