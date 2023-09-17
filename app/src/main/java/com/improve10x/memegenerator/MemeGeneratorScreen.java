@@ -36,14 +36,12 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // shows the UI on screen
-        initComponents(); // This will create objects for all the ui components
-        setupListeners(); // Setting listener for button click action
+        showScreen();
     }
 
     // Do not touch this method
     private void initComponents() {
-        templateNameDropDown = findViewById(R.id.templateNameTxt);
+        templateNameDropDown = findViewById(R.id.templateNameDropDown);
         topTextTxt = findViewById(R.id.topTextTxt);
         bottomTextTxt = findViewById(R.id.bottomTextTxt);
         generateMemeBtn = findViewById(R.id.generateBtn);
@@ -80,14 +78,27 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     }
 
     @Override
-    public void showTitle(String title) {
-        getSupportActionBar().setTitle("Meme Generator");
+    public void showScreen() {
+        setContentView(R.layout.activity_main); // shows the UI on screen
+        initComponents(); // This will create objects for all the ui components
+        setupListeners(); // Setting listener for button click action
+        showTitle("Meme Generator");
+        showTemplateNamesDropDown();
     }
 
     @Override
-    public String getTemplateName() {
-        //TODO : Modify the interface methods to make it work with drop down
-        return null;
+    public void showTitle(String title) {
+        getSupportActionBar().setTitle(title);
+    }
+
+    @Override
+    public void showTemplateNamesDropDown() {
+        showDataInDropdown(createTemplateNames());
+    }
+
+    @Override
+    public String getSelectedTemplateName() {
+        return templateNameDropDown.getSelectedItem().toString();
     }
 
     @Override
@@ -102,7 +113,7 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     @Override
     public void onGenerateMemeClicked() {
-        String memeImageUrl = createMemeImageUrl(getTemplateName(), getTopText(), getBottomText());
+        String memeImageUrl = createMemeImageUrl(getSelectedTemplateName(), getTopText(), getBottomText());
         Picasso.get().load(memeImageUrl).into(previewImg);
     }
 }

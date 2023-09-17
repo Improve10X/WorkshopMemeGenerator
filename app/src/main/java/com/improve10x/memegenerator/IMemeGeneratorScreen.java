@@ -1,9 +1,13 @@
 package com.improve10x.memegenerator;
 
 public interface IMemeGeneratorScreen {
+    void showScreen();
+
     void showTitle(String title);
 
-    String getTemplateName();
+    void showTemplateNamesDropDown();
+
+    String getSelectedTemplateName();
 
     String getTopText();
 

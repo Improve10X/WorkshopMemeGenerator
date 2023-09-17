@@ -32,7 +32,7 @@
         android:layout_marginTop="8dp"
         android:text="Top Text"
         app:layout_constraintBottom_toTopOf="@+id/topTextTxt"
-        app:layout_constraintStart_toStartOf="@+id/templateNameTxt"
+        app:layout_constraintStart_toStartOf="@+id/templateNameDropDown"
         app:layout_constraintTop_toBottomOf="@id/templateNameDropDown" />
 
     <EditText
