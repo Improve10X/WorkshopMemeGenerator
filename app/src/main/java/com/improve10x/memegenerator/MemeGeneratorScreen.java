@@ -143,17 +143,6 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
 
     @Override
     public void onGenerateMemeClicked() {
-        String memeImageUrl = createMemeImageUrl(getSelectedTemplateName(), getTopText(), getBottomText());
-        showPreviewImage(memeImageUrl);
-    }
-
-    @Override
-    public void hidePreviewImg() {
-        previewImg.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void showPreviewImage(String memeUrl) {
-        Picasso.get().load(memeUrl).into(previewImg);
+        // TODO : open MemePreviewScreen with meme ImageUrl
     }
 }

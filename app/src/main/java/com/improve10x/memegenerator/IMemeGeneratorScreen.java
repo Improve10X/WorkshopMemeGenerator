@@ -14,8 +14,4 @@ public interface IMemeGeneratorScreen {
     String getBottomText();
 
     void onGenerateMemeClicked();
-
-    void hidePreviewImg();
-
-    void showPreviewImage(String memeUrl);
 }
