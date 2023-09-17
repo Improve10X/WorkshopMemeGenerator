@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-public class MemePreviewScreen extends AppCompatActivity implements IMemePreviewScreen{
+public class MemePreviewScreen extends AppCompatActivity {
 
     /*
     Guidelines
@@ -27,7 +27,8 @@ public class MemePreviewScreen extends AppCompatActivity implements IMemePreview
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showScreen();
+        setContentView(R.layout.activity_meme_preview_screen);
+        initComponents();
     }
 
     // DO not touch this method
@@ -40,22 +41,5 @@ public class MemePreviewScreen extends AppCompatActivity implements IMemePreview
         return getIntent().getStringExtra("MEME_IMAGE_URL");
     }
 
-    @Override
-    public void showScreen() {
-        setContentView(R.layout.activity_meme_preview_screen);
-        initComponents();
-        showTitle("Meme Preview");
-        showPreviewImage(getMemeImageUrl());
-    }
-
-    @Override
-    public void showTitle(String title) {
-        getSupportActionBar().setTitle(title);
-    }
-
-    @Override
-    public void showPreviewImage(String memeUrl) {
-        Picasso.get().load(memeUrl).into(previewImg);
-    }
 }
 

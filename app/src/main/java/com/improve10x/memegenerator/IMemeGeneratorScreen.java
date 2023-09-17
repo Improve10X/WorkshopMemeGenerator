@@ -5,7 +5,11 @@ public interface IMemeGeneratorScreen {
 
     void showTitle(String title);
 
+    void hideTemplateNameTxt();
+
     void showTemplateNamesDropDown();
+
+    void showTemplateNames(String[] templateNames);
 
     String getSelectedTemplateName();
 
@@ -14,8 +18,4 @@ public interface IMemeGeneratorScreen {
     String getBottomText();
 
     void onGenerateMemeClicked();
-
-    void hidePreviewImg();
-
-    void showPreviewImage(String memeUrl);
 }
