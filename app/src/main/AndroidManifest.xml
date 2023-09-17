@@ -15,6 +15,9 @@
         android:theme="@style/Theme.WorkshopMemeGenerator"
         tools:targetApi="31">
         <activity
+            android:name=".MemePreviewScreen"
+            android:exported="false" />
+        <activity
             android:name=".MemeGeneratorScreen"
             android:exported="true">
             <intent-filter>
