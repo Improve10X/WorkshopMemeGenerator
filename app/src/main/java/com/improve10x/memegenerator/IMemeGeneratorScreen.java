@@ -5,7 +5,11 @@ public interface IMemeGeneratorScreen {
 
     void showTitle(String title);
 
+    void hideTemplateNameTxt();
+
     void showTemplateNamesDropDown();
+
+    void showTemplateNames(String[] templateNames);
 
     String getSelectedTemplateName();
 
