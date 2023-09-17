@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MemeGeneratorScreen">
 
     <TextView
         android:id="@+id/textView"
@@ -16,6 +16,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/templateNameTxt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -23,8 +35,8 @@
         android:layout_marginTop="8dp"
         android:text="Top Text"
         app:layout_constraintBottom_toTopOf="@+id/topTextTxt"
-        app:layout_constraintStart_toStartOf="@+id/templatesp"
-        app:layout_constraintTop_toBottomOf="@id/templatesp" />
+        app:layout_constraintStart_toStartOf="@+id/templateNameTxt"
+        app:layout_constraintTop_toBottomOf="@id/templateNameTxt" />
 
     <EditText
         android:id="@+id/topTextTxt"
@@ -70,12 +82,15 @@
         app:layout_constraintStart_toStartOf="@+id/bottomTextTxt"
         app:layout_constraintTop_toBottomOf="@+id/bottomTextTxt" />
 
-    <Spinner
-        android:id="@+id/templatesp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+    <ImageView
+        android:id="@+id/previewImg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/generateBtn"
+        app:srcCompat="@drawable/baseline_image_24" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
