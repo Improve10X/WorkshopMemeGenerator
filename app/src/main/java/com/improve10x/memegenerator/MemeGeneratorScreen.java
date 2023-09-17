@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,16 +15,37 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 /*
-Guidelines
+    Guidelines
 
-To get selected template name from dropdown, use
-templateDropDown.getSelectedItem().toString();
+    To show screen title, use
+    getSupportActionBar().setTitle(title);
 
-To show templates, use method
-showDataInDropdown(templateNames)
+    To get Template name text, use
+    templateNameTxt.getText().toString()
 
-To get all the template names as an array, use method
-createTemplateNames()
+    To get top text, use
+    topTextTxt.getText().toString()
+
+    To get bottom text, use
+    bottomTextTxt.getText().toString()
+
+    To load a image using url
+    Picasso.get().load(<URL>).into(previewImg);
+
+    To get selected template name from dropdown, use
+    templateDropDown.getSelectedItem().toString();
+
+    To show templates, use method
+    showDataInDropdown(templateNames)
+
+    To get all the template names as an array, use method
+    createTemplateNames()
+
+    To navigate to next screen, use method
+    openMemePreviewScreen(memeImageUrl)
+
+    To hide preview image
+    previewImg.setVisibility(View.GONE)
  */
 public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGeneratorScreen {
 
@@ -72,6 +94,14 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
         templateNameDropDown.setAdapter(adapter);
     }
 
+    // Do not touch this method
+    // Use this method to open preview screen
+    private void openMemePreviewScreen(String memeImageUrl) {
+        Intent intent = new Intent(this, MemePreviewScreen.class);
+        intent.putExtra("MEME_IMAGE_URL", memeImageUrl);
+        startActivity(intent);
+    }
+
     // This will create the meme image url using ApiMeme.com
     private String createMemeImageUrl(String template, String topText, String bottomText) {
         return "https://apimeme.com/meme?meme=" + template + "&top=" + topText + "&bottom=" + bottomText;
@@ -114,6 +144,16 @@ public class MemeGeneratorScreen extends AppCompatActivity implements IMemeGener
     @Override
     public void onGenerateMemeClicked() {
         String memeImageUrl = createMemeImageUrl(getSelectedTemplateName(), getTopText(), getBottomText());
-        Picasso.get().load(memeImageUrl).into(previewImg);
+        showPreviewImage(memeImageUrl);
+    }
+
+    @Override
+    public void hidePreviewImg() {
+        previewImg.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showPreviewImage(String memeUrl) {
+        Picasso.get().load(memeUrl).into(previewImg);
     }
 }
